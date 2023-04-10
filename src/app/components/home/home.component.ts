@@ -10,6 +10,8 @@ import { debounceTime, filter } from 'rxjs';
 export class HomeComponent implements OnInit {
   bookSearch: FormControl;
 
+  searchQuery = '';
+
   constructor() {
     this.bookSearch = new FormControl('');
   }
@@ -25,9 +27,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.bookSearch.valueChanges
       .pipe(
-        debounceTime(300),
+        debounceTime(500),
       ).
       subscribe((value: string) => {
+        this.searchQuery = value;
       });
   }
 }

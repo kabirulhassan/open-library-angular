@@ -1,6 +1,20 @@
-<div *ngIf="allBooks.length > 0">
-  <front-end-internship-assignment-table-view
-  [booksList]="allBooks"
-  [subjectName]="subjectName"
-  ></front-end-internship-assignment-table-view>
+<div class="trending-subjects-wrapper">
+
+  <button class="btn-back" mat-button (click)="goBackToPreviousPage()">
+    <mat-icon>arrow_back</mat-icon>
+    <span>Back</span>
+  </button>
+
+  <div *ngIf="isLoading">
+    <front-end-internship-assignment-loader-component></front-end-internship-assignment-loader-component>
+  </div>
+  
+  <div *ngIf="errorState">
+    <front-end-internship-assignment-error-component [errorState]="errorState"></front-end-internship-assignment-error-component>
+  </div>
+  
+  <div *ngIf="allBooks.length > 0">
+    <front-end-internship-assignment-table-view [booksList]="allBooks"
+      [subjectName]="subjectName"></front-end-internship-assignment-table-view>
+  </div>
 </div>

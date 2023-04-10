@@ -1,0 +1,13 @@
+<div *ngIf="books.length > 0">
+    <front-end-internship-assignment-table-view [booksList]="books"></front-end-internship-assignment-table-view>
+    <div class="tw-flex">
+        <button mat-button (click)="changePage(-1)" [disabled]="currentPage===1">
+            <mat-icon>arrow_back</mat-icon>
+            <span>Previous</span>
+        </button>
+        <button mat-button (click)="changePage(1)" [disabled]="currentPage===totalPages">
+            <span>Next</span>
+            <mat-icon>arrow_forward</mat-icon>
+        </button>
+    </div>
+</div>

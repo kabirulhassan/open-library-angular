@@ -1,0 +1,11 @@
+.trending-subjects-wrapper{
+    .btn-back{
+        @apply
+        tw-p-24-px
+        tw-m-24-px;
+
+        &:hover{
+            box-shadow: 0 4px 4px rgba(44,48,78,.1);
+        }
+    }
+}
