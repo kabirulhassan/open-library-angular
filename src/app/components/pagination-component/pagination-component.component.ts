@@ -17,7 +17,7 @@ export class PaginationComponentComponent implements OnChanges {
 
   books: Array<Book> = [];
   errorState: ErrorState | null = null;
-  isLoading = true;
+  isLoading = false;
 
   constructor(private searchService: SearchService, private transformAuthors: TransformAuthorsService) {}
 
@@ -28,11 +28,12 @@ export class PaginationComponentComponent implements OnChanges {
   }
 
   getSearchData(){
+    this.isLoading = true;
     const limit = 10;
     this.searchService.getAllBooks(this.searchQuery, this.currentPage)
     .pipe(
       catchError((err) => {
-        this.isLoading = false;
+        // this.isLoading = false;
         this.errorState = ErrorState.API_ERROR;
         throw of(null);
       }
@@ -47,6 +48,7 @@ export class PaginationComponentComponent implements OnChanges {
         this.errorState = ErrorState.NO_DATA;
         return;
       }
+      this.errorState = null;
       for(const book of data.docs){
         book.authors = this.transformAuthors.transformAuthors(book.author_name || []);
       }
@@ -56,9 +58,14 @@ export class PaginationComponentComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.errorState = null;
     if (changes['searchQuery']) {
       this.currentPage = 1;
-      this.getSearchData();
+      if(this.searchQuery !== '')
+        this.getSearchData();
+      else{
+        this.books = [];
+      }
     }
   }
 }

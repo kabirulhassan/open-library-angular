@@ -19,7 +19,11 @@
   tw-flex
   tw-justify-center
   tw-h-60-px
-  tw-w-200-px
+}
+.search-input{
+  &:focus{
+    outline: none;
+  }
 }
 
 .trending-subjects {

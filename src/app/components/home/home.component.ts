@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit {
     { name: 'Crypto' },
   ];
 
+  clearSearch(){
+    this.bookSearch.setValue('');
+  }
+
   ngOnInit(): void {
     this.bookSearch.valueChanges
       .pipe(

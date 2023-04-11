@@ -1,6 +1,15 @@
-<div *ngIf="books.length > 0">
+<div *ngIf="isLoading">
+  <front-end-internship-assignment-loader-component></front-end-internship-assignment-loader-component>
+</div>
+
+<div *ngIf="errorState">
+  <front-end-internship-assignment-error-component [errorState]="errorState"></front-end-internship-assignment-error-component>
+</div>
+
+
+<div *ngIf="books.length > 0 && !isLoading && !errorState">
     <front-end-internship-assignment-table-view [booksList]="books"></front-end-internship-assignment-table-view>
-    <div class="tw-flex">
+    <div class="tw-flex tw-justify-end tw-mr-16-px">
         <button mat-button (click)="changePage(-1)" [disabled]="currentPage===1">
             <mat-icon>arrow_back</mat-icon>
             <span>Previous</span>
